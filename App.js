@@ -19,7 +19,6 @@ const instructions = Platform.select({
         'Shake or press menu button for dev menu',
 });
 
-type Props = {};
 export default class App extends Component<Props> {
 
     constructor(props) {
@@ -53,8 +52,9 @@ export default class App extends Component<Props> {
                 <Text style={styles.instructions}>{instructions}</Text>
                 <Text style={styles.instructions}>start run</Text>
 
+                //默认的对齐方式是纵向的，从上至下
                 <View style={{
-                    flexDirection: 'row-reverse',
+                    flexDirection:'row',
                     backgroundColor: 'gray',
                     justifyContent: 'flex-end',
                     margin: 5,
@@ -83,7 +83,6 @@ export default class App extends Component<Props> {
                         <Text style={{fontSize: 16}}>flex:3</Text>
                     </View>
                 </View>
-
             </View>
         );
     }
