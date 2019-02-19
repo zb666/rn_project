@@ -1,27 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
     Text,
-    TextInput,
     Image,
     Platform,
     View
-} from 'react-native'
-
-//从xx 目录下找寻xx.js文件
+} from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import Home from '../Home/home'
-import Find from '../Find/find'
-import More from '../More/more'
-import Mine from '../Mine/mine'
+import Home from '../Home/home';
+import Find from '../Find/find';
+import Mine from '../Mine/mine';
+import More from '../More/more';
+import {Navigator} from "react-native-deprecated-custom-components"
 
 export default class Main extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            selectedTab: 'home'//默认选中的文件
+            selectedTab: 'home'  //默认选中主页
         }
     }
 
@@ -85,7 +83,6 @@ export default class Main extends Component {
             </TabNavigator>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#F5FCFF',
     },
     welcome: {
         fontSize: 20,
@@ -104,5 +101,5 @@ const styles = StyleSheet.create({
         width: Platform.OS === 'ios' ? 30 : 25,
         height: Platform.OS === 'ios' ? 30 : 25
     }
-});
 
+});

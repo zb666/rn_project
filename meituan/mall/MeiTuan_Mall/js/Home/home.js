@@ -1,39 +1,95 @@
-import React,{Component} from 'react-native'
-//引入控件
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ * @lint-ignore-every XPLATJSCOPYRIGHT1
+ */
+
+import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,TextInput,Image,StatusBar} from 'react-native';
 import HomeDetail from './HomeDetail';
-var Dimensions = require('Dimensions');
-var {width,height} = Dimensions.get('window');
-export default class Home extends Component{
+var Dimensions =require('Dimensions')
+var {width, height} = Dimensions.get('window');
+export default class Home extends Component<Props> {
     _pressButton(){
         const {navigator} = this.props;
-        if (navigator){
-            navigator.pop()
+        if (navigator) {
+            //startActivity
+            navigator.push({
+                name:"详情页面",
+                component:HomeDetail
+            })
         }
     }
-    render(){
+    render() {
         return (
-            <View style = {styles.container}>
-                //es5 提供 了自动绑定的功能  但是es6 将不再给出
-                <Text style={style.welcome} onPress={this._pressButton().bind(this)}>
-                该界面点击进行返回
+            <View>
+                <StatusBar
+                    backgroundColor='rgba(255,96,0,1.0)'
+                    barStyle="light-content"
+                    />
+                {this.renderNavBar()}
+                <Text onPress={this._pressButton.bind(this)}>
+                    {/*首页导航栏*/}
+                    Main页面
                 </Text>
             </View>
         );
     }
+
+    renderNavBar() {
+       return (
+           <View style={styles.navBarStyle}>
+            <Text>
+                长沙
+            </Text>
+               <TextInput
+               placeholder="养生" style={styles.topInputStyle}></TextInput>
+
+               <View style={{flexDirection:'row'}}>
+                   <Image source={require('../../../../../../../BaiduNetdiskDownload/动脑学院专题-混合开发/Lsn5_美团电商实战--项目搭建_2019-2-18(David)/Lsn5_美团电商实战--项目搭建_2019-2-18(David)/代码/代码/res/images/icon_homepage_message.png')} style={styles.navRightImg}/>
+                   <Image source={require('../../../../../../../BaiduNetdiskDownload/动脑学院专题-混合开发/Lsn5_美团电商实战--项目搭建_2019-2-18(David)/Lsn5_美团电商实战--项目搭建_2019-2-18(David)/代码/代码/res/images/icon_homepage_scan.png')} style={styles.navRightImg}/>
+               </View>
+           </View>
+       )
+
+
+
+    }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
+    navBarStyle:{
+        backgroundColor:'rgba(255,96,0,1.0)',
+        height:60,
+        flexDirection:'row',
         alignItems: 'center',
-        backgroundColor: 'blue',
+        justifyContent:'space-around',
+        position:'relative',
+        top:-10
+
+    },
+    navRightImg:{
+        width:30,
+        height:30
+    },
+    topInputStyle:{
+        width:width*0.7,
+        height:40,
+        backgroundColor: 'white',
+        borderRadius:16,
+        paddingLeft:10
     },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
     },
-
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
 });

@@ -10,6 +10,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+
 export default class HomeDetail extends Component<Props> {
     _pressButton() {
         const { navigator } = this.props;
@@ -21,12 +22,12 @@ export default class HomeDetail extends Component<Props> {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}  onPress={this._pressButton.bind(this)}>
-                    HomeDetail页面_点击返回
-                </Text>
+                <View style={styles.container}>
+                    <Text style={styles.welcome}  onPress={this._pressButton.bind(this)}>
+                        HomeDetail页面_点击返回
+                    </Text>
 
-            </View>
+                </View>
         );
     }
 }
