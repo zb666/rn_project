@@ -1,0 +1,3 @@
+rootProject.name = 'MeiTuan_Mall'
+
+include ':app'
