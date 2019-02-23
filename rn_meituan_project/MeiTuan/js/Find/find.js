@@ -29,15 +29,8 @@ class SonComponent extends Component {
         }
     }
 
-    //子控件接受变量 可变state
-    reveiveMoney(money) {
-        this.setState({
-            money: money
-        })
-    }
-
     makeMoney(money) {
-        this.props.reveiveMoney(money)
+        this.props.receiveMoney(money)
     }
 
     render() {
@@ -45,7 +38,7 @@ class SonComponent extends Component {
             <View style={styles.container}>
                 <Text style={styles.welcome}>{this.props.name}的孩子组件</Text>
                 <Text>总共收到了来自于父亲的 {this.state.money} 生活费</Text>
-                <Text onPress={() => this.makeMoney.bind(this, 100)}>点击挣100块钱</Text>
+                <Text onPress={this.makeMoney.bind(this, 100)}>点击挣100块钱</Text>
             </View>
         );
     };
@@ -55,11 +48,16 @@ class FatherComponent extends Component {
 
     constructor(props) {
         super(props);
-        {
-            this.state = {
-                money: 0
-            }
+        this.state = {
+            money: 0
         }
+    }
+
+    //子控件接受变量 可变state
+    reveiveMoney(money) {
+        this.setState({
+            money: money
+        });
     }
 
     render() {
@@ -67,16 +65,14 @@ class FatherComponent extends Component {
         return (
             <View style={{flex: 1, alignItems: 'center'}}>
 
-                <SonComponent name={this.props.name}/>
-
-                <SonComponent ref="son"/>
+                {/*<SonComponent ref="son"/>*/}
 
                 <Text style={{marginTop: 100}} onPress={() => {
                     this.refs.son.reveiveMoney(1000)
                 }}>发生活费了
                 </Text>
 
-                {/*<SonComponent reveiveMoney={this.reveiveMoney.bind(this)}/>*/}
+                <SonComponent receiveMoney={this.receiveMoney.bind(this)}/>
 
                 <Text style={{marginBottom: 50}}>爸爸收到了通过绑定的子控件的bind方法而收到的100块钱{this.state.money}</Text>
 
