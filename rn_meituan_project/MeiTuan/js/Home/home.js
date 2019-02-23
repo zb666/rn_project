@@ -8,10 +8,11 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TextInput,Image,StatusBar} from 'react-native';
+import {Platform, StyleSheet, Text, ScrollView,View,TextInput,Image,StatusBar} from 'react-native';
 import HomeDetail from './HomeDetail';
 var Dimensions =require('Dimensions')
 var {width, height} = Dimensions.get('window');
+import  HomeTopView from './HomeTopView'
 export default class Home extends Component<Props> {
     _pressButton(){
         const {navigator} = this.props;
@@ -29,31 +30,34 @@ export default class Home extends Component<Props> {
                 <StatusBar
                     backgroundColor='rgba(255,96,0,1.0)'
                     barStyle="light-content"
-                />
+                    />
                 {this.renderNavBar()}
-                <Text onPress={this._pressButton.bind(this)}>
-                    {/*首页导航栏*/}
-                    Main页面
-                </Text>
+                <ScrollView>
+                    <HomeTopView/>
+                </ScrollView>
+
+
             </View>
         );
     }
 
     renderNavBar() {
-        return (
-            <View style={styles.navBarStyle}>
-                <Text>
-                    长沙
-                </Text>
-                <TextInput
-                    placeholder="养生" style={styles.topInputStyle}></TextInput>
+       return (
+           <View style={styles.navBarStyle}>
+            <Text>
+                杭州
+            </Text>
+               <TextInput
+               placeholder="React-Native 了解和入门" style={styles.topInputStyle}></TextInput>
 
-                <View style={{flexDirection:'row'}}>
-                    <Image source={require('../../res/images/icon_homepage_message.png')}  style={styles.navRightImg}/>
-                    <Image source={require('../../res/images/icon_homepage_scan.png')} style={styles.navRightImg}/>
-                </View>
-            </View>
-        )
+               <View style={{flexDirection:'row'}}>
+                   <Image source={require('../../res/images/icon_homepage_message.png')}  style={styles.navRightImg}/>
+                   <Image source={require('../../res/images/icon_homepage_scan.png')} width={30} height={30}/>
+               </View>
+           </View>
+       )
+
+
 
     }
 }
