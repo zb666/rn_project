@@ -24,10 +24,26 @@ export default class Find extends Component<Props> {
 }
 
 class SonComponent extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            money: 0
+        }
+    }
+
+    //子控件接受变量 可变state
+    reveiveMoney(money) {
+        this.setState({
+            money: money
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>{this.props.name}的孩子组件</Text>
+                <Text>总共收到了来自于父亲的 {this.state.money} 生活费</Text>
             </View>
         );
     };
@@ -38,6 +54,10 @@ class FatherComponent extends Component {
         //父组件委托给主组件 渲染带有子组件的ui布局代码
         return (<View style={{flex: 1, alignItems: 'center'}}>
                 <SonComponent name={this.props.name}/>
+                <SonComponent ref="son"/>
+                <Text style={{marginTop: 100}} onPress={() => {
+                    this.refs.son.reveiveMoney(1000)
+                }}>发生活费了</Text>
             </View>
         );
     }
